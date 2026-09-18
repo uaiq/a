@@ -1,0 +1,56 @@
+:root{--bg:#000;--fg:#fff;--muted:#bdbdbd;--accent:#fff}
+*{box-sizing:border-box}html,body{height:100%}body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;line-height:1.5;display:flex;flex-direction:column}
+a{color:var(--fg);text-decoration:none}
+.container{max-width:900px;margin:32px auto;padding:0 20px}
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 20px 28px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.04)}
+.avatar{width:96px;height:96px;border-radius:999px;border:2px solid rgba(255,255,255,0.08);object-fit:cover}
+h1{margin:16px 0 4px;font-size:28px;letter-spacing:0.5px}
+.tagline{margin:0;color:var(--muted)}
+.btn{display:inline-block;margin-top:12px;padding:8px 14px;border:1px solid rgba(255,255,255,0.08);border-radius:8px}
+section{margin-top:28px}
+.repo-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.repo{padding:14px;border:1px solid rgba(255,255,255,0.04);border-radius:8px;background:linear-gradient(180deg,transparent,rgba(255,255,255,0.01))}
+.repo h3{margin:0 0 6px;font-size:16px}
+.repo p{margin:0;color:var(--muted);font-size:14px}
+.repo .meta{margin-top:8px;font-size:13px;color:var(--muted)}
+footer{margin-top:auto;padding:18px;text-align:center;color:var(--muted);font-size:14px}
+@media (max-width:520px){.hero{padding:32px}.avatar{width:72px;height:72px}h1{font-size:22px}}
+
+/* Name animation: gentle float + color fade between white and blue */
+.name-animated{
+	display:inline-block;
+	animation: floatY 3.2s ease-in-out infinite, colorFade 3.6s linear infinite alternate;
+	will-change: transform, color;
+}
+
+@keyframes floatY{
+	0%{transform: translateY(0)}
+	50%{transform: translateY(-8px)}
+	100%{transform: translateY(0)}
+}
+
+@keyframes colorFade{
+	0%{color:var(--fg)}
+	50%{color:#00aaff}
+	100%{color:var(--fg)}
+}
+
+/* Custom dot cursor */
+@media (pointer: fine){
+	body{cursor:none}
+}
+
+.cursor-dot{
+	position:fixed;left:0;top:0;pointer-events:none;z-index:9999;
+	width:10px;height:10px;border-radius:50%;background:var(--fg);transform:translate(-50%,-50%) scale(1);
+	box-shadow:0 0 8px rgba(0,170,255,0.2), 0 0 2px rgba(255,255,255,0.06);
+	transition:transform 120ms ease, background 240ms linear, width 120ms ease, height 120ms ease;
+}
+
+.cursor-dot.hidden{opacity:0}
+
+/* Slightly larger when hovering interactive elements */
+a:hover ~ .cursor-dot, button:hover ~ .cursor-dot, .btn:hover ~ .cursor-dot, .repo a:hover ~ .cursor-dot{
+	transform:translate(-50%,-50%) scale(1.6);
+	background:#00aaff;
+}
